@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trip Planner Assistant ✈️</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1><i class="fas fa-plane"></i> Trip Planner Assistant</h1>
+            <p class="subtitle">Plan your perfect trip with flight search</p>
+        </header>
+
+        <main class="main-content">
+            <div class="card planner-card">
+                <h2><i class="fas fa-map-marked-alt"></i> Plan Your Trip</h2>
+                
+                <form id="tripForm" class="trip-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="origin"><i class="fas fa-home"></i> From</label>
+                            <input type="text" id="origin" placeholder="City or airport code (e.g., Berlin or BER)" required>
+                            <small class="form-help">Enter city name or 3-letter airport code</small>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="destination"><i class="fas fa-flag"></i> To</label>
+                            <input type="text" id="destination" placeholder="City or airport code (e.g., Athens or ATH)" required>
+                            <small class="form-help">Enter city name or 3-letter airport code</small>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="departure_date"><i class="fas fa-calendar-alt"></i> Departure</label>
+                            <input type="date" id="departure_date" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="return_date"><i class="fas fa-calendar-alt"></i> Return</label>
+                            <input type="date" id="return_date">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="travelers"><i class="fas fa-users"></i> Travelers</label>
+                            <select id="travelers">
+                                <option value="1">1 Traveler</option>
+                                <option value="2" selected>2 Travelers</option>
+                                <option value="3">3 Travelers</option>
+                                <option value="4">4 Travelers</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="budget"><i class="fas fa-wallet"></i> Budget</label>
+                            <select id="budget">
+                                <option value="economy">💰 Economy</option>
+                                <option value="medium" selected>💵 Medium</option>
+                                <option value="luxury">💎 Luxury</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label><i class="fas fa-heart"></i> Interests (Optional)</label>
+                        <div class="interests">
+                            <label class="interest-checkbox">
+                                <input type="checkbox" value="beach">
+                                <span>🏖️ Beach</span>
+                            </label>
+                            <label class="interest-checkbox">
+                                <input type="checkbox" value="hiking">
+                                <span>🥾 Hiking</span>
+                            </label>
+                            <label class="interest-checkbox">
+                                <input type="checkbox" value="culture">
+                                <span>🏛️ Culture</span>
+                            </label>
+                            <label class="interest-checkbox">
+                                <input type="checkbox" value="food">
+                                <span>🍽️ Food</span>
+                            </label>
+                            <label class="interest-checkbox">
+                                <input type="checkbox" value="shopping">
+                                <span>🛍️ Shopping</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="submit" id="generateBtn" class="btn btn-primary">
+                            <i class="fas fa-magic"></i> Generate Travel Plan
+                        </button>
+                        <button type="button" id="resetBtn" class="btn btn-secondary">
+                            <i class="fas fa-redo"></i> Reset
+                        </button>
+                    </div>
+                </form>
+
+                <div id="loading" class="loading hidden">
+                    <div class="spinner">
+                        <i class="fas fa-spinner fa-spin"></i>
+                    </div>
+                    <p>Searching flights and creating your plan...</p>
+                </div>
+            </div>
+
+            <div id="results" class="hidden">
+                <!-- Results will be inserted here -->
+            </div>
+
+            <div class="help-section">
+                <h3><i class="fas fa-info-circle"></i> Popular Airport Codes</h3>
+                <div class="airport-codes">
+                    <div class="code-group">
+                        <h4>Europe</h4>
+                        <p>BER (Berlin), ATH (Athens), CDG (Paris), LHR (London), FCO (Rome)</p>
+                    </div>
+                    <div class="code-group">
+                        <h4>North America</h4>
+                        <p>JFK (New York), LAX (Los Angeles), ORD (Chicago), YYZ (Toronto)</p>
+                    </div>
+                    <div class="code-group">
+                        <h4>Asia & Pacific</h4>
+                        <p>HND (Tokyo), DXB (Dubai), SIN (Singapore), SYD (Sydney)</p>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <footer class="footer">
+            <p>Trip Planner Assistant • Powered by Amadeus API</p>
+            <p><small>Get API key from: <a href="https://developers.amadeus.com" target="_blank">developers.amadeus.com</a></small></p>
+        </footer>
+    </div>
+
+    <div id="toast" class="toast hidden"></div>
+
+    <script src="/static/js/script.js"></script>
+</body>
+</html>
