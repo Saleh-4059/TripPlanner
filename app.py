@@ -58,7 +58,7 @@ def create_plan():
         })
         
     except Exception as e:
-        print(f"❌ Error: {e}")
+        print(f" Error: {e}")
         return jsonify({'success': False, 'error': str(e)}), 500
 
 @app.route('/download/<filename>')
@@ -74,17 +74,8 @@ def download_pdf(filename):
     except:
         return jsonify({'error': 'File not found'}), 404
 
-@app.route('/health')
-def health():
-    """Health check"""
-    return jsonify({
-        'status': 'healthy',
-        'amadeus_configured': bool(Config.AMADEUS_API_KEY and Config.AMADEUS_API_SECRET)
-    })
 
-@app.route('/static/<path:path>')
-def serve_static(path):
-    return send_from_directory('static', path)
+
 
 if __name__ == '__main__':
     print("\n" + "="*50)
